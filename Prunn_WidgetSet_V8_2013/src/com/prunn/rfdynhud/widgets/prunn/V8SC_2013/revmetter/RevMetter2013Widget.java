@@ -167,7 +167,7 @@ public class RevMetter2013Widget extends Widget
     @Override
     public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
     {
-        super.onRealtimeEntered( gameData, isEditorMode );
+        super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
         if(!isEditorMode)
             log(cpid);
@@ -277,9 +277,9 @@ public class RevMetter2013Widget extends Widget
         
         tenthOfSec.update((int)(gameData.getScoringInfo().getSessionNanos() / 10000000f));
         if(gameData.getProfileInfo().getMeasurementUnits() == MeasurementUnits.METRIC)
-            cSpeed.update( (int)telemData.getScalarVelocityKPH() );
+            cSpeed.update( (int)telemData.getScalarVelocityKmh() );
         else
-            cSpeed.update( (int)telemData.getScalarVelocityMPH() );
+            cSpeed.update( (int)telemData.getScalarVelocityMih() );
         
         
         

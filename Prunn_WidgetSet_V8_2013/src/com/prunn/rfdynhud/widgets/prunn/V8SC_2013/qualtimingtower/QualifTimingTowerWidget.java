@@ -30,7 +30,6 @@ import net.ctdp.rfdynhud.values.FloatValue;
 import net.ctdp.rfdynhud.values.IntValue;
 import net.ctdp.rfdynhud.values.StandingsView;
 import net.ctdp.rfdynhud.values.StringValue;
-import com.prunn.rfdynhud.plugins.tlcgenerator.StandardTLCGenerator;
 import net.ctdp.rfdynhud.widgets.base.widget.Widget;
 import com.prunn.rfdynhud.widgets.prunn._util.PrunnWidgetSetv8SC_2013;
 
@@ -81,7 +80,6 @@ public class QualifTimingTowerWidget extends Widget
     private int[] driverIDs = null;
     private boolean[] gapFlag = null;
     private boolean[] gapFlag2 = null;
-    StandardTLCGenerator gen = new StandardTLCGenerator();
     private static final InputAction showTimes = new InputAction( "Show times", true );
     private final IntValue inputShowTimes = new IntValue();
     private BooleanProperty AbsTimes = new BooleanProperty("Use absolute times", false) ;
@@ -126,7 +124,7 @@ public class QualifTimingTowerWidget extends Widget
         return ( new InputAction[] { showTimes } );
     }
     @Override
-    public void onRealtimeEntered( LiveGameData gameData, boolean isEditorMode )
+    public void onCockpitEntered( LiveGameData gameData, boolean isEditorMode )
     {
         super.onCockpitEntered( gameData, isEditorMode );
         String cpid = "Y29weXJpZ2h0QFBydW5uMjAxMQ";
@@ -269,7 +267,7 @@ public class QualifTimingTowerWidget extends Widget
             {
 
                 positions[i].update( vsi.getPlace( false ) );
-                driverNames[i].update(gen.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() ));
+                driverNames[i].update(PrunnWidgetSetv8SC_2013.generateThreeLetterCode2( vsi.getDriverName(), gameData.getFileSystem().getConfigFolder() ));
                 
                 if(vsi.getVehicleInfo().getManufacturer().toUpperCase().equals( "FORD" ) )
                     Manufacturer[i] = 0;
